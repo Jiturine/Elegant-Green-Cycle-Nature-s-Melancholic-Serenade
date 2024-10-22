@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Myd.Platform
 {
     /// <summary>
-    /// ÉãÏñ»ú
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     public class SceneCamera : MonoBehaviour, ICamera
     {
@@ -21,10 +21,10 @@ namespace Myd.Platform
         private Vector2 offset;
 
         [SerializeField]
-        private float ShakeStrength = 1;
+        private float ShakeStrength = 0.01f;
         [SerializeField]
-        private AnimationCurve ShakeCurve = new AnimationCurve(new Keyframe[] 
-            { 
+        private AnimationCurve ShakeCurve = new AnimationCurve(new Keyframe[]
+            {
                 new Keyframe(0, -1.4f, -7.9f, -7.9f),
                 new Keyframe(0.27f, 0.78f, 23.4f, 23.4f),
                 new Keyframe(0.54f, -0.12f, 22.6f, 22.6f),
@@ -36,7 +36,7 @@ namespace Myd.Platform
 
         public void SetCameraPosition(Vector2 cameraPosition)
         {
-            this.mainCamera.transform.position = new Vector3(cameraPosition.x+offset.x, cameraPosition.y + offset.y, -10);
+            this.mainCamera.transform.position = new Vector3(cameraPosition.x + offset.x, cameraPosition.y + offset.y, -10);
         }
 
         public void Shake(Vector2 dir, float duration)

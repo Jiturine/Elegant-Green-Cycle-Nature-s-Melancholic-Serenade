@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Myd.Platform;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,11 +23,13 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        SceneLoader.Instance.LoadScene("Main Menu");
+        sceneIndex = 0;
+        SceneLoader.Instance.LoadScene(sceneIndex);
     }
 
     void Update()
     {
 
     }
+    public int sceneIndex;
 }

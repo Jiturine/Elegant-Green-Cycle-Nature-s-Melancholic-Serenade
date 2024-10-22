@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Myd.Platform;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -17,9 +19,57 @@ public class Character : MonoBehaviour
         attackOffsetY = -0.12f;
         attackSize = new Vector2(1.5f, 1.5f);
         health = 10;
+        //
+        GameObject sfxObject = new GameObject("SoundEffect");
+        AudioManager.Instance.playerMoveSFX = sfxObject.AddComponent<AudioSource>();
+        AudioManager.Instance.playerMoveSFX.clip = Resources.Load<AudioClip>("AudioClip/PlayerMovement");
+        AudioManager.Instance.playerMoveSFX.loop = true;
+        AudioManager.Instance.playerMoveSFX.Play();
+        AudioManager.Instance.playerMoveSFX.Pause();
     }
     void Update()
     {
+        if (Input.GetKey(GameInput.Jump.key))
+        {
+            animator.SetBool("Jump", true);
+        }
+        if (player.playerController.OnGround)
+        {
+            animator.SetBool("Jump", false);
+        }
+        if (player.playerController.stateMachine.State == (int)EActionState.Climb || player.playerController.WallSlideDir != 0)
+        {
+            animator.SetBool("Climb", true);
+            animator.SetBool("Run", false);
+            animator.SetBool("Jump", false);
+        }
+        else
+        {
+            animator.SetBool("Climb", false);
+        }
+        if (player.playerController.OnGround && player.playerController.MoveX != 0)
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
+        }
+        if (animator.GetBool("Climb") == true)
+        {
+            if (player.playerController.MoveY == 0)
+            {
+                animator.speed = 0;
+            }
+            else
+            {
+                animator.speed = 1.0f;
+            }
+        }
+        else
+        {
+            animator.speed = 1.0f;
+        }
         if (Input.GetKeyDown(attackKey))
         {
             Attack();
@@ -34,13 +84,20 @@ public class Character : MonoBehaviour
                 hurted = false;
             }
         }
+        if (player.playerController.MoveX != 0 && player.playerController.OnGround)
+        {
+            AudioManager.Instance.PlayMoveSFX();
+        }
+        else
+        {
+            AudioManager.Instance.StopMoveSFX();
+        }
     }
     void Attack()
     {
-
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackAreaPos, attackSize, 0f);
     }
-    //debug
+    // -------------------------debug-------------------------------
     // private void OnDrawGizmosSelected()
     // {
     //     attackAreaPos = transform.position;
@@ -54,6 +111,7 @@ public class Character : MonoBehaviour
         player.playerRenderer.spriteRenderer.color = new Color(1.0f, 0.5f, 0.5f, 1.0f);
         health -= damage;
         hurted = true;
+        Game.Instance.CameraShake(player.GetCameraPosition(), 0.1f);
     }
     public bool hurted;
     public float attackOffsetX;
@@ -61,6 +119,7 @@ public class Character : MonoBehaviour
     public Vector2 attackAreaPos;
     public Vector2 attackSize;
     public Player player;
+    public Animator animator;
     public KeyCode attackKey = KeyCode.J;
     public int health;
     public int maxHealth;

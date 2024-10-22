@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 3925333817
+    locked: 0
+  - name: Platform
+    uniqueID: 976524887
+    locked: 0
   - name: EffectBack
     uniqueID: 1528835547
     locked: 0

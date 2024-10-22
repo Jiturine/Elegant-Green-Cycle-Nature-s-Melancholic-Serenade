@@ -34,6 +34,17 @@ public class SceneLoader : MonoBehaviour
 
     }
 
+    public IEnumerator LoadScene(int index)
+    {
+        animator = GameObject.Find("Mask Image").GetComponent<Animator>();
+        animator.SetBool("FadeIn", false);
+        animator.SetBool("FadeOut", true);
+        AsyncOperation async = SceneManager.LoadSceneAsync(index);
+        async.allowSceneActivation = false;
+        yield return new WaitForSeconds(2f);
+        async.allowSceneActivation = true;
+        async.completed += OnLoadedScene;
+    }
     public IEnumerator LoadScene(string name)
     {
         animator = GameObject.Find("Mask Image").GetComponent<Animator>();

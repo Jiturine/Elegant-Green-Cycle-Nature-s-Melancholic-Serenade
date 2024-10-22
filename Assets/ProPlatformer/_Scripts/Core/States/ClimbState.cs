@@ -77,8 +77,8 @@ namespace Myd.Platform
                 {
                     //if (ctx.WallBoosting)
                     //{
-                        //    Speed += LiftBoost;
-                        //    Play(Sfxs.char_mad_grab_letgo);
+                    //    Speed += LiftBoost;
+                    //    Play(Sfxs.char_mad_grab_letgo);
                     //}
                     //else
                     {
@@ -112,7 +112,8 @@ namespace Myd.Platform
                             trySlip = true;
                         }
                         //如果在上面0.6米处存在障碍，且前上方0.1米处没有阻碍，依然不允许向上
-                        else if (ctx.ClimbHopBlockedCheck() && ctx.SlipCheck(0.1f)){
+                        else if (ctx.ClimbHopBlockedCheck() && ctx.SlipCheck(0.1f))
+                        {
                             Debug.Log("=======ClimbSlip_Type2");
                             ctx.Speed.y = Mathf.Min(ctx.Speed.y, 0);
                             target = 0;
@@ -130,7 +131,6 @@ namespace Myd.Platform
                     {
                         //往下爬
                         target = Constants.ClimbDownSpeed;
-
                         if (ctx.OnGround)
                         {
                             ctx.Speed.y = Mathf.Max(ctx.Speed.y, 0);    //落地时,Y轴速度>=0
@@ -198,6 +198,6 @@ namespace Myd.Platform
             ctx.Speed.y = Math.Max(ctx.Speed.y, Constants.ClimbHopY);
             ctx.ForceMoveX = 0;
             ctx.ForceMoveXTimer = Constants.ClimbHopForceTime;
-        } 
+        }
     }
 }
