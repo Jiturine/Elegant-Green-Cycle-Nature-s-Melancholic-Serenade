@@ -33,7 +33,7 @@ namespace Myd.Platform
 
         private bool onGround;
         private bool wasOnGround;
-        
+
         public bool DashStartedOnGround { get; set; }
 
         public int ForceMoveX { get; set; }
@@ -48,11 +48,11 @@ namespace Myd.Platform
         public int WallSlideDir { get; set; }
         public JumpCheck JumpCheck { get; set; }    //土狼时间
         public WallBoost WallBoost { get; set; }    //WallBoost
-        private FiniteStateMachine<BaseActionState> stateMachine;
+        public FiniteStateMachine<BaseActionState> stateMachine;
 
         public ISpriteControl SpriteControl { get; private set; }
         //特效控制器
-        public IEffectControl EffectControl { get; private set; } 
+        public IEffectControl EffectControl { get; private set; }
         //音效控制器
         public ISoundControl SoundControl { get; private set; }
         public ICamera camera { get; private set; }
@@ -67,7 +67,7 @@ namespace Myd.Platform
             this.stateMachine.AddState(new ClimbState(this));
             this.GroundMask = LayerMask.GetMask("Ground");
 
-            this.Facing  = Facings.Right;
+            this.Facing = Facings.Right;
             this.LastAim = Vector2.right;
         }
 
@@ -137,7 +137,7 @@ namespace Myd.Platform
                 }
                 //Wall Boost, 不消耗体力WallJump
                 this.WallBoost?.Update(deltaTime);
-                
+
                 //跳跃检查
                 this.JumpCheck?.Update(deltaTime);
 
@@ -257,7 +257,7 @@ namespace Myd.Platform
             this.Speed.y = Constants.JumpSpeed;
             //Speed += LiftBoost;
             this.varJumpSpeed = this.Speed.y;
-            
+
             this.PlayJumpEffect(SpritePosition, Vector2.up);
         }
 
@@ -316,7 +316,7 @@ namespace Myd.Platform
                 this.PlayJumpEffect(this.RightPosition, Vector2.left);
             else
                 this.PlayJumpEffect(this.LeftPosition, Vector2.right);
-            
+
         }
 
         public void ClimbJump()
@@ -365,8 +365,8 @@ namespace Myd.Platform
                 return false;
         }
 
-        
-        
+
+
 
         public bool CanDash
         {

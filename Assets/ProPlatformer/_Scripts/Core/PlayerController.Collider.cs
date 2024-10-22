@@ -50,7 +50,7 @@ namespace Myd.Platform
             if (Physics2D.OverlapBox(origion + Vector2.up * (float)yAdd + Vector2.right * dir * (Constants.ClimbCheckDist * 0.1f + DEVIATION), collider.size, 0, GroundMask))
             {
                 return true;
-            } 
+            }
             return false;
         }
 
@@ -172,7 +172,7 @@ namespace Myd.Platform
             Vector2 origin = this.Position + collider.position + Vector2.up * collider.size.y / 2f + Vector2.right * direct * (collider.size.x / 2f + STEP);
             Vector2 point1 = origin + Vector2.up * (-0.4f + addY);
 
-            if(Physics2D.OverlapPoint(point1, GroundMask))
+            if (Physics2D.OverlapPoint(point1, GroundMask))
             {
                 return false;
             }
@@ -210,6 +210,7 @@ namespace Myd.Platform
 
         private float MoveXStepWithCollide(float distX)
         {
+
             Vector2 moved = Vector2.zero;
             Vector2 direct = Math.Sign(distX) > 0 ? Vector2.right : Vector2.left;
             Vector2 origion = this.Position + collider.position;
@@ -238,7 +239,7 @@ namespace Myd.Platform
                     Ducking = true;
                     return true;
                 }
-                else if (this.Speed.y == 0 && this.Speed.x!=0)
+                else if (this.Speed.y == 0 && this.Speed.x != 0)
                 {
                     for (int i = 1; i <= Constants.DashCornerCorrection; i++)
                     {
@@ -260,7 +261,7 @@ namespace Myd.Platform
         {
             Vector2 origion = this.Position + collider.position;
             Vector2 direct = Math.Sign(distY) > 0 ? Vector2.up : Vector2.down;
-            
+
             if (this.Speed.y < 0)
             {
                 if ((this.stateMachine.State == (int)EActionState.Dash) && !DashStartedOnGround)
@@ -270,7 +271,7 @@ namespace Myd.Platform
                         for (int i = -1; i >= -Constants.DashCornerCorrection; i--)
                         {
                             float step = (Mathf.Abs(i * 0.1f) + DEVIATION);
-                            
+
                             if (!CheckGround(new Vector2(-step, 0)))
                             {
                                 this.Position += new Vector2(-step, distY);
@@ -350,7 +351,7 @@ namespace Myd.Platform
         {
             Vector2 origion = this.Position + collider.position;
             Vector2 dir = Vector2.right * (int)this.Facing;
-            RaycastHit2D hit = Physics2D.BoxCast(origion, collider.size, 0, dir, Constants.ClimbCheckDist*0.1f + DEVIATION, GroundMask);
+            RaycastHit2D hit = Physics2D.BoxCast(origion, collider.size, 0, dir, Constants.ClimbCheckDist * 0.1f + DEVIATION, GroundMask);
             if (hit)
             {
                 //如果发生碰撞,则移动距离

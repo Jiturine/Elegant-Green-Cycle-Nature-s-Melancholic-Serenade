@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerParam
   m_EditorClassIdentifier: 
   EnableWallSlide: 1
-  EnableJumpGrace: 1
+  EnableJumpGrace: 0
   EnableWallBoost: 1
   MaxRun: 9
   RunAccel: 100

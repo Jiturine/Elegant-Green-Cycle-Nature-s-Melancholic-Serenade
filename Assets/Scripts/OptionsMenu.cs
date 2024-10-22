@@ -34,12 +34,20 @@ public class OptionsMenu : MonoBehaviour
         if (Instance.gameObject.activeSelf)
         {
             Time.timeScale = 0;
-            Game.Instance.gameState = EGameState.Pause;
+            if (Game.Instance != null) Game.Instance.gameState = EGameState.Pause;
         }
         else
         {
             Time.timeScale = 1;
-            Game.Instance.gameState = EGameState.Play;
+            if (Game.Instance != null) Game.Instance.gameState = EGameState.Play;
         }
+    }
+    public void OnMusicVolumeChange(float value)
+    {
+        AudioManager.Instance.MusicVolume = value;
+    }
+    public void OnSoundEffectVolumeChange(float value)
+    {
+        AudioManager.Instance.SoundEffectVolume = value;
     }
 }

@@ -24,7 +24,7 @@ namespace Myd.Platform
         [SerializeField]
         private SceneEffectManager sceneEffectManager;
         [SerializeField]
-        private SceneCamera gameCamera;
+        public SceneCamera gameCamera;
         //玩家
         public Player player;
 

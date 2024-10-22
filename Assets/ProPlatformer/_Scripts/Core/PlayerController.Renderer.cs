@@ -47,7 +47,7 @@ namespace Myd.Platform
                     color = NormalHairColor;
                 HairColor = color;
             }
-            SpriteControl.SetHairColor(HairColor);
+            // SpriteControl.SetHairColor(HairColor);
 
             lastDashes = dashes;
         }
@@ -64,11 +64,11 @@ namespace Myd.Platform
             Vector2 origion = this.Position + Vector2.up * -0.5f;
             RaycastHit2D hit = Physics2D.Raycast(origion, dir, 0.5f, GroundMask);
             Color color = Color.white;
-            if (hit && hit.collider)
-            {
-                color = hit.collider.GetComponent<Ground>().GroundColor;
-                SpriteControl.WallSlide(color, dir);
-            }
+            // if (hit && hit.collider)
+            // {
+            //     color = hit.collider.GetComponent<Ground>().GroundColor;
+            //     SpriteControl.WallSlide(color, dir);
+            // }
         }
         //播放Dash特效
         public void PlayDashEffect(Vector3 position, Vector2 dir)
@@ -84,7 +84,7 @@ namespace Myd.Platform
 
             Color color = Color.white;
 
-            RaycastHit2D hit = Physics2D.BoxCast(position, collider.size*0.8f, 0, -forward, 0.5f, GroundMask);
+            RaycastHit2D hit = Physics2D.BoxCast(position, collider.size * 0.8f, 0, -forward, 0.5f, GroundMask);
             if (hit && hit.collider)
             {
                 color = hit.collider.GetComponent<Ground>().GroundColor;
