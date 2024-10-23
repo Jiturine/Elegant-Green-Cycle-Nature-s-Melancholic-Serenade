@@ -10,8 +10,8 @@ public class ChangeableButton : MonoBehaviour
     {
         button = transform.Find("Button").GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
-        KeycodeName = transform.Find("Button").GetComponentInChildren<TextMeshProUGUI>();
-        behaviourName = transform.Find("Behaviour Name").GetComponent<TextMeshProUGUI>().text;
+        KeycodeName = transform.Find("Button").GetComponentInChildren<Text>();
+        behaviourName = transform.Find("Behaviour Name").GetComponent<Text>().text;
     }
     void Start()
     {
@@ -27,7 +27,7 @@ public class ChangeableButton : MonoBehaviour
         KeycodeName.text = "请输入按键";
     }
     public Button button;
-    public TextMeshProUGUI KeycodeName;
+    public Text KeycodeName;
     public KeyCode keyCode;
     public KeyCode defaultKeyCode;
     public string behaviourName;

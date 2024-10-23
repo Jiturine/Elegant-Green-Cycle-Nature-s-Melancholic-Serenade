@@ -15,11 +15,12 @@ public class Character : MonoBehaviour
     void Start()
     {
         player = Game.Instance.player;
-        attackOffsetX = 0.86f;
-        attackOffsetY = -0.12f;
+        swordVFXOffestX = 1.5f;
         attackSize = new Vector2(1.5f, 1.5f);
         health = 10;
-        //
+
+        swordVFX = Resources.Load<GameObject>("SwordVFX");
+
         GameObject sfxObject = new GameObject("SoundEffect");
         AudioManager.Instance.playerMoveSFX = sfxObject.AddComponent<AudioSource>();
         AudioManager.Instance.playerMoveSFX.clip = Resources.Load<AudioClip>("AudioClip/PlayerMovement");
@@ -95,7 +96,9 @@ public class Character : MonoBehaviour
     }
     void Attack()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackAreaPos, attackSize, 0f);
+        GameObject vfxObject = Instantiate(swordVFX, new Vector3(transform.position.x + swordVFXOffestX * (int)player.playerController.Facing, transform.position.y), Quaternion.identity);
+        vfxObject.transform.localScale = new Vector3((int)player.playerController.Facing * vfxObject.transform.localScale.x, vfxObject.transform.localScale.y, vfxObject.transform.localScale.z);
+        Destroy(vfxObject, 0.3f);
     }
     // -------------------------debug-------------------------------
     // private void OnDrawGizmosSelected()
@@ -111,15 +114,17 @@ public class Character : MonoBehaviour
         player.playerRenderer.spriteRenderer.color = new Color(1.0f, 0.5f, 0.5f, 1.0f);
         health -= damage;
         hurted = true;
-        Game.Instance.CameraShake(player.GetCameraPosition(), 0.1f);
+        Game.Instance.CameraShake(player.GetCameraPosition(), 0.2f);
+        player.playerController.Speed *= -0.5f;
+        Debug.Log(player.playerController.Speed.x + " " + player.playerController.Speed.y);
     }
     public bool hurted;
-    public float attackOffsetX;
-    public float attackOffsetY;
     public Vector2 attackAreaPos;
     public Vector2 attackSize;
     public Player player;
     public Animator animator;
+    public GameObject swordVFX;
+    public float swordVFXOffestX = 1.0f;
     public KeyCode attackKey = KeyCode.J;
     public int health;
     public int maxHealth;

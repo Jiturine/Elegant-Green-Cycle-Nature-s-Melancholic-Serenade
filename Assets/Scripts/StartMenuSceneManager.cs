@@ -12,8 +12,30 @@ public class StartMenuSceneManager : MonoBehaviour
     }
     public void OnStartGameBtnClick()
     {
-        startGameButton.enabled = false;
+        DisableButtons();
         StartCoroutine(SceneLoader.Instance.LoadScene(++GameManager.Instance.sceneIndex));
     }
+    public void OnGroupListBtnClick()
+    {
+        DisableButtons();
+        StartCoroutine(SceneLoader.Instance.LoadScene("Group List"));
+    }
+    public void OnQuitGameButtonClick()
+    {
+        DisableButtons();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+    public void DisableButtons()
+    {
+        startGameButton.enabled = false;
+        groupListButton.enabled = false;
+        quitGameButton.enabled = false;
+    }
     public Button startGameButton;
+    public Button groupListButton;
+    public Button quitGameButton;
 }

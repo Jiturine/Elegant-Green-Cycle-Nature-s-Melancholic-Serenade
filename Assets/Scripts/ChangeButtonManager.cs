@@ -27,6 +27,9 @@ public class ChangeButtonManager : MonoBehaviour
                     case "跳跃":
                         GameInput.Jump.key = currentKey;
                         break;
+                    case "攀爬":
+                        GameInput.Grab.key = currentKey;
+                        break;
                 }
                 curButton = null;
             }

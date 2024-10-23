@@ -30,7 +30,6 @@ public class Prologue : MonoBehaviour
         fadeIn = true;
         currentTextIndex = 0;
         text.text = prologueText[currentTextIndex];
-        text.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     }
     void Update()
     {
@@ -44,7 +43,7 @@ public class Prologue : MonoBehaviour
                     fadeIn = false;
                     alpha = 1.0f;
                 }
-                text.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+                text.color = new Color(1.0f, 1.0f, 1.0f, alpha);
             }
             else if (fadeOut)
             {
@@ -56,12 +55,12 @@ public class Prologue : MonoBehaviour
                     fadeIn = true;
                     ChangeText();
                 }
-                text.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+                text.color = new Color(1.0f, 1.0f, 1.0f, alpha);
             }
             else
             {
                 showTimer += Time.deltaTime;
-                if (showTimer > 1.0f)
+                if (showTimer > Mathf.Min(prologueText[currentTextIndex].Length * 0.1f, 2f))
                 {
                     showTimer = 0.0f;
                     fadeOut = true;

@@ -41,6 +41,7 @@ public class OptionsMenu : MonoBehaviour
             Time.timeScale = 1;
             if (Game.Instance != null) Game.Instance.gameState = EGameState.Play;
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
     }
     public void OnMusicVolumeChange(float value)
     {
@@ -50,4 +51,5 @@ public class OptionsMenu : MonoBehaviour
     {
         AudioManager.Instance.SoundEffectVolume = value;
     }
+    public RectTransform rectTransform;
 }
