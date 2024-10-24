@@ -32,13 +32,12 @@ public class TreeMonster : Enemy
         else
         {
             LayerMask layerMask = LayerMask.GetMask("Ground");
-            RaycastHit2D groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 5f, layerMask);
+            RaycastHit2D groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 3f, layerMask);
             RaycastHit2D wallCheck = Physics2D.Raycast(transform.position, Vector2.right * moveDirection, 3f, layerMask);
             if (groundCheck.collider == null || wallCheck.collider != null)
             {
                 moveDirection *= -1; // 反向
             }
-            Debug.Log(groundCheck.collider + " " + wallCheck.collider);
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime * Vector2.right);
             if (idleTimer < 0)
             {

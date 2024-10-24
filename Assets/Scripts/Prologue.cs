@@ -3,6 +3,7 @@ using ParadoxNotion.Design;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Prologue : MonoBehaviour
@@ -73,7 +74,7 @@ public class Prologue : MonoBehaviour
         if (currentTextIndex == prologueText.Count - 1)
         {
             GameManager.Instance.sceneIndex++;
-            StartCoroutine(SceneLoader.Instance.LoadScene(GameManager.Instance.sceneIndex));
+            SceneManager.LoadScene("First Level");
             end = true;
         }
         else

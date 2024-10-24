@@ -21,6 +21,14 @@ public class OptionsMenu : MonoBehaviour
     }
     void Start()
     {
+        musicSlider = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+        SFXSlider = GameObject.Find("SoundEffectVolumeSlider").GetComponent<Slider>();
+        musicSlider.onValueChanged.AddListener(OnMusicVolumeChange);
+        SFXSlider.onValueChanged.AddListener(OnSoundEffectVolumeChange);
+        jumpKeyText.text = GameInput.Jump.key.ToString();
+        climbKeyText.text = GameInput.Grab.key.ToString();
+        attackKeyText.text = ChangeButtonManager.attackKey.ToString();
+        abilityKeyText.text = ChangeButtonManager.abilityKey.ToString();
         Instance.gameObject.SetActive(false);
     }
 
@@ -52,4 +60,10 @@ public class OptionsMenu : MonoBehaviour
         AudioManager.Instance.SoundEffectVolume = value;
     }
     public RectTransform rectTransform;
+    public Slider musicSlider;
+    public Slider SFXSlider;
+    public Text jumpKeyText;
+    public Text climbKeyText;
+    public Text attackKeyText;
+    public Text abilityKeyText;
 }

@@ -141,16 +141,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurted: 0
-  attackOffsetX: 1.86
-  attackOffsetY: -0.12
   attackAreaPos: {x: 0, y: 0}
   attackSize: {x: 0, y: 0}
   animator: {fileID: -1624861540909105386}
   swordVFX: {fileID: 0}
   swordVFXOffestX: 0.2
   attackKey: 106
+  abilityKey: 108
   health: 0
   maxHealth: 0
+  abilitySize: {x: 3, y: 3}
+  healthBar: {fileID: 0}
 --- !u!61 &8834669012978818642
 BoxCollider2D:
   m_ObjectHideFlags: 0

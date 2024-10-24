@@ -76,9 +76,9 @@ namespace Myd.Platform
     }
     public static class GameInput
     {
-        public static VisualButton Jump = new VisualButton(KeyCode.C, 0.08f);
+        public static VisualButton Jump = new VisualButton(KeyCode.Space, 0.08f);
         public static VisualButton Dash = new VisualButton(KeyCode.None, 0.08f);
-        public static VisualButton Grab = new VisualButton(KeyCode.Z);
+        public static VisualButton Grab = new VisualButton(KeyCode.K);
         public static VirtualJoystick Aim = new VirtualJoystick();
         public static Vector2 LastAim;
 

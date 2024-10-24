@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6297915432142296721}
   m_Layer: 0
   m_Name: TreeMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,8 +47,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8300e8f8378feb24cb676fab75ce38b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7703584575842853363}
+  hurtTimer: 0
+  collisionDamage: 1
+  health: 10
+  hurted: 0
   spriteRenderer: {fileID: 7798539867761882240}
+  moveDirection: 0
+  moveSpeed: 2
+  idleTimer: 0
+  isMoving: 0
+  animator: {fileID: 7703584575842853363}
 --- !u!95 &7703584575842853363
 Animator:
   serializedVersion: 5

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Myd.Platform;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartMenuSceneManager : MonoBehaviour
@@ -13,12 +14,12 @@ public class StartMenuSceneManager : MonoBehaviour
     public void OnStartGameBtnClick()
     {
         DisableButtons();
-        StartCoroutine(SceneLoader.Instance.LoadScene(++GameManager.Instance.sceneIndex));
+        SceneManager.LoadScene("Prologue");
     }
     public void OnGroupListBtnClick()
     {
         DisableButtons();
-        StartCoroutine(SceneLoader.Instance.LoadScene("Group List"));
+        SceneManager.LoadScene("Group List");
     }
     public void OnQuitGameButtonClick()
     {

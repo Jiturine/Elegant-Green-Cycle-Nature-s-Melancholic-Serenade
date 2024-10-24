@@ -30,10 +30,26 @@ public class ChangeButtonManager : MonoBehaviour
                     case "攀爬":
                         GameInput.Grab.key = currentKey;
                         break;
+                    case "攻击":
+                        if (Character.Instance != null)
+                        {
+                            Character.Instance.attackKey = currentKey;
+                            attackKey = currentKey;
+                        }
+                        break;
+                    case "能力":
+                        if (Character.Instance != null)
+                        {
+                            Character.Instance.abilityKey = currentKey;
+                            abilityKey = currentKey;
+                        }
+                        break;
                 }
                 curButton = null;
             }
         }
     }
     public ChangeableButton curButton;
+    static public KeyCode attackKey = KeyCode.J;
+    static public KeyCode abilityKey = KeyCode.L;
 }

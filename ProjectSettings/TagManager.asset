@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Interactable
+  - Spike
   layers:
   - Default
   - TransparentFX
