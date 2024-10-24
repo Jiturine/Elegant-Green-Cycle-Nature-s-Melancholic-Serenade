@@ -20,7 +20,9 @@ public class AudioManager : MonoBehaviour
             sceneMusic = new Dictionary<string, AudioClip>
             {
                 ["Prologue"] = Resources.Load<AudioClip>("AudioClip/Prologue"),
-                ["Forest"] = Resources.Load<AudioClip>("AudioClip/Forest")
+                ["Forest"] = Resources.Load<AudioClip>("AudioClip/Forest"),
+                ["Robot"] = Resources.Load<AudioClip>("AudioClip/Robot"),
+                ["Epilogue"] = Resources.Load<AudioClip>("AudioClip/Epilogue")
             };
             soundEffect = new Dictionary<string, AudioClip>
             {

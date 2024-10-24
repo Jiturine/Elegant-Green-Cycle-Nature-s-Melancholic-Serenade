@@ -33,10 +33,12 @@ public class Character : MonoBehaviour
     {
         CheckBoundary();
         AnimateUpdate();
-        if (Input.GetKeyDown(attackKey))
+        if (Input.GetKeyDown(attackKey) && attackTimer < 0)
         {
             Attack();
+            attackTimer = 0.5f;
         }
+        attackTimer -= Time.deltaTime;
         if (Input.GetKeyDown(abilityKey))
         {
             UseAbility();
@@ -107,7 +109,6 @@ public class Character : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        Debug.Log(damage);
         player.playerRenderer.spriteRenderer.color = new Color(1.0f, 0.5f, 0.5f, 1.0f);
         Health -= damage;
         hurted = true;
@@ -190,4 +191,5 @@ public class Character : MonoBehaviour
     }
     public Vector2 abilitySize;
     public Slider healthBar;
+    private float attackTimer;
 }

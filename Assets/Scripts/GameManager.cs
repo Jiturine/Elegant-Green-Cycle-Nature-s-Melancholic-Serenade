@@ -24,13 +24,11 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        sceneIndex = 0;
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(0);
     }
 
     void Update()
     {
 
     }
-    public int sceneIndex;
 }
