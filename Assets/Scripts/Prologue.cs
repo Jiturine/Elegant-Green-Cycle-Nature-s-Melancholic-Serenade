@@ -66,7 +66,7 @@ public class Prologue : MonoBehaviour
             {
                 showTimer += Time.deltaTime;
 #if UNITY_EDITOR
-                if (showTimer > 1f)
+                if (showTimer > 0f)
 #else
                 if (showTimer > Mathf.Max(prologueText[currentTextIndex].Length * 0.05f, 2f))
 #endif

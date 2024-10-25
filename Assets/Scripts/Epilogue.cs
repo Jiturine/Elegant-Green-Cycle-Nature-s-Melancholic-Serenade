@@ -20,7 +20,6 @@ public class Epilogue : MonoBehaviour
             "现在的惨剧在千百年前也仍旧发生过吗？在从原始到现代的进化历程中人类一直在重蹈覆辙吗？当下全新的世界也会再次迎来秩序的崩塌吗？她的存在只是不断出现的没有任何作用的节点吗？",
             "“请指引我……人类的未来，到底是真正的光明，还是不知悔改的无数次循环呢？”",
             "……",
-            "离下一次奇迹的到来，还有千百年。"
         };
     }
     void Start()
@@ -75,19 +74,23 @@ public class Epilogue : MonoBehaviour
     {
         if (currentTextIndex == epilogueText.Count - 1)
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-            end = true;
+            EndGame();
         }
         else
         {
             text.text = epilogueText[++currentTextIndex];
         }
     }
+    private void EndGame()
+    {
+        var animator = GameObject.Find("Mask Image").GetComponent<Animator>();
+        animator.SetBool("FadeIn", false);
+        animator.SetBool("FadeOut", true);
+        end = true;
+        finalTextAnimator.SetBool("End", true);
+    }
     public Text text;
+    public Animator finalTextAnimator;
     private bool fadeIn;
     private bool fadeOut;
     private float showTimer;

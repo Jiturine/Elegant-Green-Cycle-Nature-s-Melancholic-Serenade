@@ -14,7 +14,11 @@ public class StartMenuSceneManager : MonoBehaviour
     public void OnStartGameBtnClick()
     {
         DisableButtons();
+#if UNITY_EDITOR
+        SceneManager.LoadScene("Epilogue");
+#else
         SceneManager.LoadScene("Prologue");
+#endif
     }
     public void OnGroupListBtnClick()
     {

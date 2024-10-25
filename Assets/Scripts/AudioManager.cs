@@ -35,6 +35,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void Start()
+    {
+        SoundEffectVolume = 1;
+        MusicVolume = 1;
+    }
     void Update()
     {
 
@@ -45,7 +50,6 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = sceneMusic[name];
         audioSource.loop = true;
         audioSource.Play();
-        Debug.Log(audioSource.clip.name);
     }
     public void PlaySound(string name)
     {

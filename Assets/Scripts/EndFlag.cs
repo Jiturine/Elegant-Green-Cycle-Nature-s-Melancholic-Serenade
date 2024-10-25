@@ -9,7 +9,7 @@ public class EndFlag : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Boss Level");
+            SceneLoader.Instance.LoadScene("Boss Level");
         }
     }
 }

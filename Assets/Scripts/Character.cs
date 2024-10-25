@@ -61,9 +61,11 @@ public class Character : MonoBehaviour
         {
             AudioManager.Instance.StopMoveSFX();
         }
+        invincibleTimer -= Time.deltaTime;
     }
     public void Attack()
     {
+        AudioManager.Instance.PlaySound("Attack");
         GameObject vfxObject = Instantiate(swordVFX, new Vector3(transform.position.x + swordVFXOffestX * (int)player.playerController.Facing, transform.position.y), Quaternion.identity);
         vfxObject.transform.localScale = new Vector3((int)player.playerController.Facing * vfxObject.transform.localScale.x, vfxObject.transform.localScale.y, vfxObject.transform.localScale.z);
         Destroy(vfxObject, 0.3f);
@@ -90,7 +92,10 @@ public class Character : MonoBehaviour
                     }
                     if (collider.TryGetComponent<SmallTree>(out var smallTree))
                     {
-                        smallTree.Grow();
+                        if (Mathf.Abs(collider.transform.position.x - transform.position.x) > 0.2f)
+                        {
+                            smallTree.Grow();
+                        }
                     }
                 }
             }
@@ -109,11 +114,13 @@ public class Character : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        if (invincibleTimer > 0) return;
         player.playerRenderer.spriteRenderer.color = new Color(1.0f, 0.5f, 0.5f, 1.0f);
         Health -= damage;
         hurted = true;
         Game.Instance.CameraShake(player.GetCameraPosition(), 0.2f);
         player.playerController.Speed *= -0.5f;
+        invincibleTimer = 1f;
     }
     public void Die()
     {
@@ -166,6 +173,7 @@ public class Character : MonoBehaviour
         }
     }
     public bool hurted;
+    public float invincibleTimer;
     public Vector2 attackAreaPos;
     public Vector2 attackSize;
     public Player player;

@@ -25,10 +25,9 @@ public class Enemy : MonoBehaviour
         }
         if (hurted)
         {
-            float g = Mathf.MoveTowards(spriteRenderer.color.g, 1.0f, 1.75f * Time.deltaTime);
-            float b = Mathf.MoveTowards(spriteRenderer.color.b, 1.0f, 1.75f * Time.deltaTime);
-            spriteRenderer.color = new Color(1.0f, g, b, 1.0f);
-            if (g == 1.0f && b == 1.0f)
+            float a = Mathf.MoveTowards(spriteRenderer.color.a, 1.0f, 1.75f * Time.deltaTime);
+            spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, a);
+            if (a == 1.0f)
             {
                 hurted = false;
             }
@@ -36,7 +35,7 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        spriteRenderer.color = new Color(1.0f, 0.5f, 0.5f, 1.0f);
+        spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
         health -= damage;
         hurted = true;
     }
