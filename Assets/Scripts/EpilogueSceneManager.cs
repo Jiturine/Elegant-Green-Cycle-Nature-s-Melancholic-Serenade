@@ -33,14 +33,7 @@ public class EpilogueSceneManager : MonoBehaviour
             }
         }
     }
-    public void EndGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-    }
+
     private Color transparent;
     private Color panelColor;
     public DialogueTreeController dialogueTree;

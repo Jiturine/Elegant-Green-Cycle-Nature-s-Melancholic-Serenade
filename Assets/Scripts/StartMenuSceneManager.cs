@@ -15,7 +15,7 @@ public class StartMenuSceneManager : MonoBehaviour
     {
         DisableButtons();
 #if UNITY_EDITOR
-        SceneManager.LoadScene("Epilogue");
+        SceneManager.LoadScene("First Level");
 #else
         SceneManager.LoadScene("Prologue");
 #endif
